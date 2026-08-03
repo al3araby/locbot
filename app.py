@@ -359,9 +359,24 @@ def is_valid_url(url):
     return isinstance(url, str) and url.startswith(('http://', 'https://'))
 
 
+def get_runtime_port(default=5000):
+    """الحصول على منفذ التشغيل من البيئة أو من الإعدادات مع fallback آمن."""
+    port_value = _get_env('PORT', '')
+    if port_value:
+        try:
+            return int(port_value)
+        except ValueError:
+            pass
+
+    try:
+        return int(config.get('port', default))
+    except (TypeError, ValueError):
+        return default
+
+
 def run_cloudflared():
     """تشغيل Cloudflared والحصول على الرابط"""
-    port = config.get('port', 5000)
+    port = get_runtime_port()
     tunnel_name = config.get('cloudflared_tunnel', '').strip()
 
     if tunnel_name:
@@ -1162,7 +1177,7 @@ def run_all():
     print("🚀 تشغيل النظام المتكامل...")
     print("=" * 50)
 
-    port = config.get('port', 5000)
+    port = get_runtime_port()
 
     # 1. التحقق من وجود ملف collector.html
     if not os.path.exists('collector.html'):
