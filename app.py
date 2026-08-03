@@ -140,8 +140,6 @@ config.setdefault('cloudflared_running', False)
 config.setdefault('cloudflared_tunnel', '')
 config.setdefault('port', 5000)
 
-apply_runtime_config()
-
 subscribers_data = load_json(SUBSCRIBERS_FILE, ADMIN_IDS)
 if not isinstance(subscribers_data, list):
     subscribers_data = ADMIN_IDS
@@ -178,6 +176,9 @@ def normalize_server_url(url):
     if not url.startswith(('http://', 'https://')):
         url = 'https://' + url
     return url.rstrip('/')
+
+
+apply_runtime_config()
 
 
 def get_client_ip():
@@ -376,6 +377,7 @@ def get_runtime_port(default=5000):
 
 def run_cloudflared():
     """تشغيل Cloudflared والحصول على الرابط"""
+    global active_server_url
     port = get_runtime_port()
     tunnel_name = config.get('cloudflared_tunnel', '').strip()
 
@@ -403,7 +405,6 @@ def run_cloudflared():
                 url = line.split('https://')[1].strip().split()[0]
                 public_url = f"https://{url}"
                 normalized_url = normalize_server_url(public_url)
-                global active_server_url
                 active_server_url = normalized_url
                 config['cloudflared_running'] = True
                 config['server_url_source'] = 'cloudflared'
@@ -416,9 +417,9 @@ def run_cloudflared():
 
 def run_tunnel():
     """يحاول استخدام رابط سيرفر موجود أو تشغيل Cloudflared"""
+    global active_server_url
     env_url = normalize_server_url(_get_env('SERVER_URL', '') or _get_env('PUBLIC_URL', ''))
     if env_url:
-        global active_server_url
         active_server_url = env_url
         config['server_url'] = env_url
         config['server_url_source'] = 'env'
@@ -431,7 +432,6 @@ def run_tunnel():
     manual_url = normalize_server_url(config.get('server_url', ''))
     if config.get('server_url_source') == 'manual' and manual_url:
         print(f"✅ تم استخدام رابط السيرفر اليدوي كحل احتياطي: {manual_url}")
-        global active_server_url
         active_server_url = manual_url
         return True
 

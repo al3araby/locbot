@@ -1,0 +1,7 @@
+{
+  "server_url": "",
+  "server_url_source": "",
+  "cloudflared_running": false,
+  "cloudflared_tunnel": "",
+  "port": 5000
+}
