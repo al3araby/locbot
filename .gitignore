@@ -1,0 +1,21 @@
+# Environment files
+.env
+
+# Python cache
+__pycache__/
+*.py[cod]
+
+# Virtual environment
+.venv/
+venv/
+
+# Local data files
+config.json
+subscribers.json
+subscriber_details.json
+generated_links.json
+visits.json
+
+# OS files
+.DS_Store
+Thumbs.db
